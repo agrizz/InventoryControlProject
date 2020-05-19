@@ -8,12 +8,10 @@
 // storing memory in code
 
 // Variables are used to store information that can be used by the program. In this code below,
-// itemOne and
-// productCost are examples of variables.
+// itemOne and productCost are examples of variables.
 
 // Scope refers to where variables are accessible to in a program. For example public and private
-// modifiers can be
-// used to allow or disallow code to be used across different classes.
+// modifiers can be used to allow or disallow code to be used across different classes.
 
 
 import java.util.Scanner; // scanner java utility
