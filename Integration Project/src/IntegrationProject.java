@@ -47,11 +47,9 @@ public class IntegrationProject {
       else // runs if false
         System.out.println("How many items would you like to subtract");
         itemOne = itemOne - scan.nextInt(); // subtracts the next int input from the current inventory
-                                           // of item one
-    
+                                           // of item one   
         inventoryValue = itemOne * PRODUCTCOST; // multiplies the inventory of item one by the product
                                             // cost
-
         System.out.print("The available inventory is now ");
         System.out.println(itemOne);
         System.out.print("The current inventory value is $");
