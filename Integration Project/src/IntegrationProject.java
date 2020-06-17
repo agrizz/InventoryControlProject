@@ -14,15 +14,18 @@
 // modifiers can be used to allow or disallow code to be used across different classes.
 
 // operator precedence is the order that operators are used in when put in a sequence together
+//is the same as order of operations in math : 
+//Parenthesis Exponents Multiplication Division Addition Subtraction
 
 
 import java.util.Scanner; // scanner java utility
 import java.util.Random;
 
-public class IntegrationProject { // this is a header
+public class IntegrationProject { 
 
-  public static double totals(double inventoryValueOne, double inventoryValueTwo,
-      double inventoryValueThree) {
+
+  public static double total(double inventoryValueOne, double inventoryValueTwo,
+      double inventoryValueThree) { // these are parameters - inside the ()
     double totalValue = inventoryValueOne + inventoryValueTwo + inventoryValueThree;
     double averageValue = totalValue / 3;
     double difference = inventoryValueOne - inventoryValueTwo;
@@ -50,28 +53,111 @@ public class IntegrationProject { // this is a header
     return totalValue;
   }
 
-  public static void main(String[] args) { // this is a method call
+  public static void calculate() { // this is a header
 
     try (Scanner scan = new Scanner(System.in)) {
-      Random rand = new Random();
-      int itemOne = 25; // # of inventory of itemOne
-      int itemTwo = 20; // this is a parameter / method argument
-      int itemThree = 15;
+      int inventoryOne = 25; // # of inventory of itemOne
+      int inventoryTwo = 20;  
+      int inventoryThree = 15;
+      int inventory = 0;
       final double COST_ONE = 24.05; // putting final in front of a variable means it cannot be
       final double COST_TWO = 15.92;
       final double COST_THREE = 28.67;
-      double inventoryValueOne = itemOne * COST_ONE;
-      double inventoryValueTwo = itemTwo * COST_TWO;
-      double inventoryValueThree = itemThree * COST_THREE;
-      String access = "yes";
-      String yes = "yes";
-      int compared = access.compareTo(yes); // == only shows as true when it is pointing to the same
-                                            // object
+      double cost = 0;
+      double inventoryValueOne = inventoryOne * COST_ONE;
+      double inventoryValueTwo = inventoryTwo * COST_TWO;
+      double inventoryValueThree = inventoryThree * COST_THREE;
+      double inventoryValue = 0;
+      String prompt = "Are you adding (true) or subtracting (false) inventory?";
+      int item;
 
-      do {
-        System.out.println("Would You like to access this tool?");
-        access = scan.nextLine();
-        String prompt = "Are you adding (true) or subtracting (false) inventory?"; // changed
+      item = scan.nextInt();
+
+      switch (item) {
+
+        case 1:
+          cost = COST_ONE;
+          inventoryValue = inventoryValueOne;
+          inventory = inventoryOne;
+
+          inventoryValueOne = inventoryValue;
+          inventoryOne = inventory;
+          break;
+
+        case 2:
+          cost = COST_TWO;
+          inventoryValue = inventoryValueTwo;
+          inventory = inventoryTwo;
+
+          inventoryValueTwo = inventoryValue;
+          inventoryTwo = inventory;
+          break;
+
+        case 3:
+          cost = COST_THREE;
+          inventoryValue = inventoryValueThree;
+          inventory = inventoryThree;
+
+          inventoryValueThree = inventoryValue;
+          inventoryThree = inventory;
+          break;
+      }
+
+      System.out.print("Your current inventory for item " + item + " is ");
+      System.out.println(inventory);
+      System.out.println(prompt);
+
+      boolean addInventory = scan.nextBoolean(); // scans for true or false value
+
+      if (addInventory == true) { // runs if true
+        System.out.println("How many items would you like to add?");
+        inventory = inventory + scan.nextInt(); // adds the next int input to the current
+        // inventory of
+        // item one
+        inventoryValue = inventory * cost; // multiplies the inventory of item one by
+                                           // the product cost
+
+        System.out.print("The available inventory for item " + item + " is now ");
+        System.out.println(inventory);
+        System.out.print("The current inventory value of item " + item + " is $");
+        System.out.println(inventoryValue);
+
+
+      } else // runs if false
+        System.out.println("How many items would you like to subtract");
+      inventory = inventory - scan.nextInt(); // subtracts the next int input from the current
+      // inventory
+      // of item one
+      inventoryValue = inventory * cost; // multiplies the inventory of item one by the
+      // product
+      // cost
+      System.out.print("The available inventory for item " + item + " is now ");
+      System.out.println(inventory);
+      System.out.print("The current inventory value of item " + item + " is $");
+      System.out.println(inventoryValue);
+      
+      total(inventoryValueOne, inventoryValueTwo, inventoryValueThree); // this is a method call
+                                                              // they are arguments inside ()
+    }
+  }
+
+
+  public static void main(String[] args) { 
+
+
+    Random rand = new Random();
+
+    int compared = 0; // == only shows as true when it is pointing to the same
+    Scanner scan = new Scanner(System.in); // object
+    System.out.println("Would You like to access this tool?");
+    String access;
+    do {
+
+
+      access = scan.nextLine();
+      compared = access.compareTo("yes");
+
+      if (compared == 0) {
         String correctPassword = "CTG";
         String websites[] = {"eBay", "Mercari", "Amazon"};
 
@@ -79,7 +165,7 @@ public class IntegrationProject { // this is a header
         System.out.println("Welcome to \"CTG LLC\"."); // escape sequence
         System.out.println("This promgram will keep track of inventory for the following sites");
 
-        for (String siteList : websites) {
+        for (String siteList : websites) { //for loop
           System.out.println(siteList);
 
         }
@@ -117,142 +203,26 @@ public class IntegrationProject { // this is a header
 
           System.out.println("Access Granted");
           System.out.println("Which item?");
-          int item = scan.nextInt();
 
-          switch (item) {
+          calculate();
 
-            case 1:
-
-              System.out.print("Your current inventory for item 1 is ");
-              System.out.println(itemOne);
-              System.out.println(prompt);
-
-              boolean addInventoryOne = scan.nextBoolean(); // scans for true or false value
-
-              if (addInventoryOne == true) { // runs if true
-                System.out.println("How many items would you like to add?");
-                itemOne = itemOne + scan.nextInt(); // adds the next int input to the current
-                                                    // inventory of
-                                                    // item one
-                inventoryValueOne = itemOne * COST_ONE; // multiplies the inventory of item one by
-                                                        // the
-                // product
-                // cost
-                System.out.print("The available inventory for item 1 is now ");
-                System.out.println(itemOne);
-                System.out.print("The current inventory value of item 1 is $");
-                System.out.println(inventoryValueOne);
-
-                totals(inventoryValueOne, inventoryValueTwo, inventoryValueThree);
-
-              } else // runs if false
-                System.out.println("How many items would you like to subtract");
-              itemOne = itemOne - scan.nextInt(); // subtracts the next int input from the current
-                                                  // inventory
-                                                  // of item one
-              inventoryValueOne = itemOne * COST_ONE; // multiplies the inventory of item one by the
-              // product
-              // cost
-              System.out.print("The available inventory for item 1 is now ");
-              System.out.println(itemOne);
-              System.out.print("The current inventory value of item 1 is $");
-              System.out.println(inventoryValueOne);
-
-              totals(inventoryValueOne, inventoryValueTwo, inventoryValueThree);
-              break;
-
-            case 2:
-
-              System.out.print("Your current inventory for item 2 is ");
-              System.out.println(itemTwo);
-              System.out.println(prompt);
-
-              boolean addInventoryTwo = scan.nextBoolean(); // scans for true or false value
-
-              if (addInventoryTwo == true) { // runs if true
-                System.out.println("How many items would you like to add?");
-                itemTwo = itemTwo + scan.nextInt(); // adds the next int input to the current
-                                                    // inventory of
-                                                    // item one
-                inventoryValueTwo = itemTwo * COST_TWO; // multiplies the inventory of item one by
-                                                        // the
-                // product
-                // cost
-                System.out.print("The available inventory for item 2 is now ");
-                System.out.println(itemTwo);
-                System.out.print("The current inventory value of item 2 is $");
-                System.out.println(inventoryValueTwo);
-
-                totals(inventoryValueOne, inventoryValueTwo, inventoryValueThree);
-
-              } else // runs if false
-                System.out.println("How many items would you like to subtract");
-              itemTwo = itemTwo - scan.nextInt(); // subtracts the next int input from the current
-                                                  // inventory
-                                                  // of item one
-              inventoryValueTwo = itemTwo * COST_TWO; // multiplies the inventory of item one by the
-              // product
-              // cost
-              System.out.print("The available inventory for item 2 is now ");
-              System.out.println(itemTwo);
-              System.out.print("The current inventory value of item 2 is $");
-              System.out.println(inventoryValueTwo);
-
-              totals(inventoryValueOne, inventoryValueTwo, inventoryValueThree);
-              break;
-
-            case 3:
-
-              System.out.print("Your current inventory of item 3 is ");
-              System.out.println(itemThree);
-              System.out.println(prompt);
-
-              boolean addInventory = scan.nextBoolean(); // scans for true or false value
-
-              if (addInventory == true) { // runs if true
-                System.out.println("How many items would you like to add?");
-                itemThree = itemThree + scan.nextInt(); // adds the next int input to the current
-                                                        // inventory of
-                // item one
-                inventoryValueThree = itemThree * COST_THREE; // multiplies the inventory of item
-                                                              // one by
-                // the
-                // product
-                // cost
-                System.out.print("The available inventory for item 3 is now ");
-                System.out.println(itemThree);
-                System.out.print("The current inventory value of item 3 is $");
-                System.out.println(inventoryValueThree);
-
-                totals(inventoryValueOne, inventoryValueTwo, inventoryValueThree);
-
-              } else // runs if false
-                System.out.println("How many items would you like to subtract");
-              itemThree = itemThree - scan.nextInt(); // subtracts the next int input from the
-                                                      // current
-              // inventory
-              // of item one
-              inventoryValueThree = itemThree * COST_THREE; // multiplies the inventory of item one
-                                                            // by the
-              // product
-              // cost
-              System.out.print("The available inventory for item 3 is now ");
-              System.out.println(itemThree);
-              System.out.print("The current inventory value of item 3 is $");
-              System.out.println(inventoryValueThree);
-
-              totals(inventoryValueOne, inventoryValueTwo, inventoryValueThree);
-              break;
-
-          }
         } else {
           System.out.println("Access Denied");
-
+          break;
         }
-      }
+      } else {
 
-      while (compared == 0);
+        System.out.println("Goodbye");
+        break;
+      }
     }
+
+    while (compared == -3 || compared == 0);
+    System.out.println("Would you like to run this tool again?");
+    access = scan.nextLine();
+
+    scan.close();
   }
+
 }
 
