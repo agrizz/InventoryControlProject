@@ -33,6 +33,7 @@ import java.util.Arrays;
 public class IntegrationProject {
 
 
+  @SuppressWarnings("unlikely-arg-type")
   public static double calculate(double inventoryValueOne, double inventoryValueTwo,
       double inventoryValueThree) { // these are parameters - inside the ()
     double totalValue = inventoryValueOne + inventoryValueTwo + inventoryValueThree;
@@ -49,9 +50,9 @@ public class IntegrationProject {
     double doubleCasting = intCasting; // casting changes the data type
 
     int values[] = new int[3];
-    values[0] = data.inventoryOne;
-    values[1] = data.inventoryTwo;
-    values[2] = data.inventoryThree;
+    values[0] = Data.inventoryOne;
+    values[1] = Data.inventoryTwo;
+    values[2] = Data.inventoryThree;
     double inventorySum = 0;
     int min = values[0];
     int max = values[0];
@@ -68,13 +69,13 @@ public class IntegrationProject {
         }
     }
     
-    data inventoryArray = new data();
+    Data inventoryArray = new Data();
     inventoryArray.setLargest(max);
     inventoryArray.setSmallest(min);
     
     double[][] fullInventory = {
         {inventoryValueOne, inventoryValueTwo, inventoryValueThree}, 
-        {data.inventoryOne, data.inventoryTwo, data.inventoryThree}, 
+        {Data.inventoryOne, Data.inventoryTwo, Data.inventoryThree}, 
   };
    
     ArrayList<String> websites = new ArrayList<String>();
@@ -96,8 +97,8 @@ public class IntegrationProject {
     System.out.println(intCasting);
     System.out.println(doubleCasting);
     System.out.println(inventoryValueOne == inventoryValueThree);
-    System.out.println(Arrays.asList(values).indexOf(20));
-    System.out.println(Arrays.asList(fullInventory).indexOf(15));
+    System.out.println(Arrays.asList(values).indexOf(fullInventory));
+    System.out.println(Arrays.asList(fullInventory).indexOf(values));
     System.out.println("The largest inventory is " + inventoryArray.getLargest());
     System.out.println("The smallest inventory is " + inventoryArray.getSmallest());
     System.out.println("There are " + fullInventory[1][0] + " items in inventory for item one, with a value of " + fullInventory[0][0]);
@@ -131,9 +132,9 @@ public class IntegrationProject {
       final double COST_TWO = 15.92;
       final double COST_THREE = 28.67;
       double cost = 0;
-      double inventoryValueOne = data.inventoryOne * COST_ONE;
-      double inventoryValueTwo = data.inventoryTwo * COST_TWO;
-      double inventoryValueThree = data.inventoryThree * COST_THREE;
+      double inventoryValueOne = Data.inventoryOne * COST_ONE;
+      double inventoryValueTwo = Data.inventoryTwo * COST_TWO;
+      double inventoryValueThree = Data.inventoryThree * COST_THREE;
       double inventoryValue = 0;
       String prompt = "Are you adding (true) or subtracting (false) inventory?";
       int item = 0;
@@ -154,25 +155,25 @@ public class IntegrationProject {
         case 1:
           cost = COST_ONE;
           inventoryValue = inventoryValueOne;
-          inventory = data.inventoryOne;
+          inventory = Data.inventoryOne;
           inventoryValueOne = inventoryValue;
-          data.inventoryOne = inventory;
+          Data.inventoryOne = inventory;
           break;
 
         case 2:
           cost = COST_TWO;
           inventoryValue = inventoryValueTwo;
-          inventory = data.inventoryTwo;
+          inventory = Data.inventoryTwo;
           inventoryValueTwo = inventoryValue;
-          data.inventoryTwo = inventory;
+          Data.inventoryTwo = inventory;
           break;
 
         case 3:
           cost = COST_THREE;
           inventoryValue = inventoryValueThree;
-          inventory = data.inventoryThree;
+          inventory = Data.inventoryThree;
           inventoryValueThree = inventoryValue;
-          data.inventoryThree = inventory;
+          Data.inventoryThree = inventory;
           break;
       }
 
@@ -293,7 +294,7 @@ public class IntegrationProject {
       }
     }
 
-    while (compared == -3 || compared == 0);
+    while (compared == 0);
     System.out.println("Would you like to run this tool again?");
     scan.hasNextLine();
     access = scan.nextLine();

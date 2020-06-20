@@ -1,5 +1,5 @@
 
-public class data {
+public class Data {
 
   public static int inventoryOne = 25; // # of inventory of itemOne
   public static int inventoryTwo = 20;
