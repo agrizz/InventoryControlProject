@@ -25,12 +25,15 @@
 
 
 import java.util.Scanner; // scanner java utility
+import java.util.InputMismatchException;
 import java.util.Random;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class IntegrationProject {
 
 
-  public static double total(double inventoryValueOne, double inventoryValueTwo,
+  public static double calculate(double inventoryValueOne, double inventoryValueTwo,
       double inventoryValueThree) { // these are parameters - inside the ()
     double totalValue = inventoryValueOne + inventoryValueTwo + inventoryValueThree;
     double averageValue = totalValue / 3;
@@ -73,6 +76,13 @@ public class IntegrationProject {
         {inventoryValueOne, inventoryValueTwo, inventoryValueThree}, 
         {data.inventoryOne, data.inventoryTwo, data.inventoryThree}, 
   };
+   
+    ArrayList<String> websites = new ArrayList<String>();
+    websites.add("eBay");
+    websites.add("Mercari");
+    websites.add("Amazon");
+    System.out.print("Totals for: ");
+    System.out.println(websites);
     
 
     System.out.println("The total value of all inventory is $" + totalValue);
@@ -86,11 +96,21 @@ public class IntegrationProject {
     System.out.println(intCasting);
     System.out.println(doubleCasting);
     System.out.println(inventoryValueOne == inventoryValueThree);
+    System.out.println(Arrays.asList(values).indexOf(20));
+    System.out.println(Arrays.asList(fullInventory).indexOf(15));
     System.out.println("The largest inventory is " + inventoryArray.getLargest());
     System.out.println("The smallest inventory is " + inventoryArray.getSmallest());
     System.out.println("There are " + fullInventory[1][0] + " items in inventory for item one, with a value of " + fullInventory[0][0]);
     System.out.println("There are " + fullInventory[1][1] + " items in inventory for item two, with a value of " + fullInventory[0][1]);
     System.out.println("There are " + fullInventory[1][2] + " items in inventory for item three, with a value of " + fullInventory[0][2]);
+    
+    //for(int i = 0; i < inventoryArray; i++){
+     // for(int j; j < inventoryArray[i]; j++){
+         // if(inventoryArray[i][j] > 0){
+         //    System.out.println();
+        //   }
+      // }
+   // }
     
     for (double count : values) {
       inventorySum += count;
@@ -116,9 +136,19 @@ public class IntegrationProject {
       double inventoryValueThree = data.inventoryThree * COST_THREE;
       double inventoryValue = 0;
       String prompt = "Are you adding (true) or subtracting (false) inventory?";
-      int item = scan.nextInt();;
-
-
+      int item = 0;
+      
+      try
+      {
+      item = scan.nextInt();
+      }
+      catch (InputMismatchException e)
+      {
+       System.out.println("You must enter a number 1-3");
+       System.exit(0);
+      }
+     
+       
       switch (item) {
 
         case 1:
@@ -165,6 +195,7 @@ public class IntegrationProject {
         System.out.print("The current inventory value of item " + item + " is $");
         System.out.println(inventoryValue);
 
+        calculate(inventoryValueOne, inventoryValueTwo, inventoryValueThree);
 
       } else // runs if false
         System.out.println("How many items would you like to subtract");
@@ -179,7 +210,7 @@ public class IntegrationProject {
       System.out.print("The current inventory value of item " + item + " is $");
       System.out.println(inventoryValue);
 
-      total(inventoryValueOne, inventoryValueTwo, inventoryValueThree); // this is a method call
+      calculate(inventoryValueOne, inventoryValueTwo, inventoryValueThree); // this is a method call
       // they are arguments inside ()
 
     }
